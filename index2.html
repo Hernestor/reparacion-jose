@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>José | Reparación a Domicilio de Maquinaria Ligera</title>
+    <!-- Incluyendo Tailwind CSS para un diseño responsivo y rápido -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Definición de la Paleta de Colores según la Guía CRO */
+        :root {
+            --primary: #F4B400;    /* Amarillo Construcción - CTA */
+            --dark: #2C3E50;       /* Gris Carbón - Texto/Fondo Oscuro */
+            --whatsapp: #25D366;   /* Verde WhatsApp */
+            --light: #F8F9FA;      /* Fondo Claro */
+        }
+        /* Configuración de Tailwind para usar las variables CSS */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': 'var(--primary)',
+                        'dark': 'var(--dark)',
+                        'whatsapp': 'var(--whatsapp)',
+                        'light': 'var(--light)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+        /* Estilos base */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            padding-bottom: 70px; /* Espacio para el CTA flotante */
+        }
+        .container { max-width: 800px; }
+        /* Botón Flotante de WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--whatsapp);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 9999px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            font-weight: 700;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+        }
+        /* Estilo de la imagen de José para la sección de confianza */
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botón Flotante de WhatsApp (CTA Prioritario y Persistente) -->
+    <a href="https://wa.me/523223806138?text=Hola%20Jose,%20necesito%20cotizar%20la%20reparación%20de%20mi%20máquina%20ligera." class="whatsapp-float" target="_blank">
+        <!-- Icono de WhatsApp (SVG) -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.001 0c-6.627 0-12 5.373-12 12s5.373 12 12 12c1.782 0 3.523-.48 5.048-1.379l2.768 1.006c.484.176.994-.038 1.168-.522.083-.231.066-.48-.052-.693l-1.028-2.617c1.198-1.638 1.831-3.564 1.831-5.595 0-6.627-5.373-12-12-12zm4.721 16.51c-.131.32-.477.513-.82.513-.231 0-.46-.067-.665-.205l-2.433-1.616c-.332-.221-.788-.28-1.127-.16l-2.022.651c-.198.064-.407.06-.595-.015-1.29-1.29-2.222-2.73-2.775-4.32-.058-.16-.062-.33-.01-.49l.652-2.02c.12-.338.062-.796-.16-1.127l-1.615-2.433c-.266-.399-.18-.94.219-1.206.399-.266.94-.18 1.206.219l2.433 1.615c.338.221.396.678.16 1.017l-.652 2.02c.083.275.247.512.457.722 1.488 1.488 3.193 2.585 5.163 3.328.32.12.597.357.777.653l1.615 2.433c.221.338.163.796-.16 1.127l-2.433 1.616z"/>
+        </svg>
+        <span>WhatsApp</span>
+    </a>
+
+    <!-- CABECERA (Header) - Above the Fold Optimizado -->
+    <header class="bg-light pt-8 pb-4 border-b border-gray-200">
+        <div class="container mx-auto px-4 text-center">
+            <!-- Foto Amigable de José para Confianza -->
+            <!-- Usamos un placeholder con un texto 'J' si no se carga la imagen local -->
+            <img 
+                src="images/jose-foto.jpg" 
+                onerror="this.onerror=null; this.src='https://placehold.co/80x80/2C3E50/FFFFFF?text=J';" 
+                alt="José, Técnico en Reparación de Maquinaria Ligera" 
+                class="profile-img mx-auto mb-4"
+            >
+            
+            <!-- H1 Optimizado -->
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-dark mb-2">
+                Reparación de Maquinaria Ligera <span class="text-primary">a Domicilio</span> en Bahía de Banderas.
+            </h1>
+            
+            <!-- H2 Propuesta de Valor -->
+            <h2 class="text-lg sm:text-xl font-semibold text-gray-700 mb-6">
+                ¡Tu Obra No Se Detiene! Servicio Rápido y Honesto: <span class="text-primary font-bold">Recolección y Entrega GRATIS*</span>.
+            </h2>
+
+            <!-- CTA PRINCIPAL (Justo debajo del H2) -->
+            <a href="https://wa.me/523223806138?text=Hola%20Jose,%20necesito%20cotizar%20la%20reparación%20de%20mi%20máquina%20ligera." class="inline-block w-full sm:w-auto bg-primary text-dark font-black py-4 px-8 rounded-full shadow-lg hover:bg-yellow-500 transition duration-300 transform hover:scale-105 mb-6">
+                COTIZA TU REPARACIÓN VÍA WHATSAPP AHORA
+            </a>
+            <p class="text-xs text-gray-500">*Recolección/Entrega gratis en Paraíso Vallarta y Altavela.</p>
+
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        
+        <!-- SECCIÓN 1: SERVICIOS Y PRUEBA TÉCNICA (Core del Negocio) -->
+        <section id="reparacion" class="mb-12">
+            <h3 class="text-xl font-bold text-dark mb-6 text-center border-b-2 border-primary pb-2">
+                Dominamos Tu Equipo. Reparación Experta.
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                
+                <!-- Columna de Servicios (Lista de Puntos de Venta) -->
+                <div>
+                    <ul class="space-y-4 text-lg list-none pl-0">
+                        <li class="flex items-start">
+                            <span class="text-primary font-extrabold mr-3">🛠️</span>
+                            <div>
+                                <strong class="text-dark">Motores a Gasolina y Eléctricos:</strong> Mantenimiento, carburación y reparaciones complejas de Apisonadores, Plantas de Luz y Motosierras.
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <!-- Ícono de Taladro (drilling emoji/svg) -->
+                            <span class="text-primary font-extrabold mr-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="10" x2="14" y1="18" y2="18"></line><line x1="10" x2="14" y1="14" y2="14"></line></svg>
+                            </span>
+                            <div>
+                                <strong class="text-dark">Demolodoras y Taladros Rotativos:</strong> Expertos en sistemas de alto impacto, garantizando precisión y potencia.
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-primary font-extrabold mr-3">⚡</span>
+                            <div>
+                                <strong class="text-dark">Herramienta General:</strong> Esmeriles, pulidoras y más. Diagnóstico honesto.
+                            </div>
+                        </li>
+                    </ul>
+
+                    <h4 class="text-lg font-semibold mt-6 text-dark">
+                        <span class="text-primary">¿Por qué José?</span>
+                    </h4>
+                    <p class="text-gray-600 italic">
+                        "Diagnóstico preciso y repuestos de calidad para que tu inversión dure más. Tu maquinaria, lista sin que salgas de casa."
+                    </p>
+                </div>
+                
+                <!-- Columna de Evidencia Técnica (Motor Desarmado) -->
+                <div class="bg-white p-4 rounded-xl shadow-lg border border-gray-100">
+                    <!-- Usamos un fallback con placehold.co si no se carga la imagen local -->
+                    <img 
+                        src="images/jose-maquina.jpg" 
+                        onerror="this.onerror=null; this.src='https://placehold.co/400x300/2C3E50/FFFFFF?text=Motor+Desarmado';" 
+                        alt="Motor de maquinaria ligera desarmado en reparación" 
+                        class="w-full h-auto rounded-lg mb-2"
+                    >
+                    <p class="text-sm text-center text-gray-500">
+                        Prueba de capacidad: Reparamos internamente sistemas de alta complejidad y motores.
+                    </p>
+                    <p class="text-sm text-center text-gray-500 mt-2">
+                        Imágenes de ejemplo de Taladros Rotativos que reparamos:
+                    </p>
+                     <div class="flex justify-center gap-2 mt-2">
+                        <img 
+                            src="images/taladro1.jpg" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/100x100/4B77BE/FFFFFF?text=Taladro+1';" 
+                            alt="Taladro rotativo en reparación" 
+                            class="w-1/2 h-auto rounded-md object-cover"
+                        >
+                        <img 
+                            src="images/taladro2.jpg" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/100x100/4B77BE/FFFFFF?text=Taladro+2';" 
+                            alt="Taladro rotativo en reparación" 
+                            class="w-1/2 h-auto rounded-md object-cover"
+                        >
+                    </div>
+                </div>
+
+            </div>
+
+             <!-- CTA DE REFUERZO -->
+            <div class="text-center mt-10">
+                 <a href="https://wa.me/523223806138?text=Hola%20Jose,%20necesito%20cotizar%20la%20reparación%20de%20mi%20máquina%20ligera." class="inline-block w-full sm:w-auto bg-whatsapp text-white font-black py-3 px-6 rounded-full shadow-xl hover:bg-green-600 transition duration-300">
+                    MANDAR WHATSAPP Y SOLICITAR RECOLECCIÓN
+                </a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: RENTA (30% Negocio) -->
+        <section id="renta" class="bg-gray-100 p-6 rounded-xl shadow-inner mt-12 text-center">
+            <h3 class="text-xl font-bold text-dark mb-4">
+                ¿Necesitas Maquinaria? Servicio de Renta Express.
+            </h3>
+            <p class="text-gray-700 mb-4">
+                Si la reparación no es viable o si requieres equipo adicional temporal, también ofrecemos renta de maquinaria ligera.
+            </p>
+            <a href="https://wa.me/523223806138?text=Hola%20Jose,%20estoy%20interesado%20en%20el%20servicio%20de%20renta%20de%20maquinaria." class="inline-block bg-dark text-white font-semibold py-3 px-6 rounded-full hover:bg-gray-700 transition duration-300">
+                Ver Equipos en Renta
+            </a>
+        </section>
+
+    </main>
+
+    <footer class="text-center text-sm text-gray-500 py-4 border-t border-gray-200 mt-8">
+        <p>Servicio prioritario en Fraccionamientos Paraíso Vallarta y Altavela, Bahía de Banderas.</p>
+        <p class="mt-1">&copy; 2025 Servicios Técnicos José | Teléfono/WhatsApp: +52 322 380 6138</p>
+    </footer>
+
+</body>
+</html>
