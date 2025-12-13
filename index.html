@@ -3,249 +3,605 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>José | Reparación de Maquinaria Ligera</title>
+    <title>José | Reparación y Renta de Maquinaria Ligera | Bahía de Banderas, Nayarit</title>
+    <meta name="description" content="Servicio profesional de reparación y renta de maquinaria ligera. Motores a gasolina, herramientas eléctricas, demoleadores, taladros, plantas de luz. Atención en Paraíso Vallarta, Altavela y toda Bahía de Banderas.">
+    <meta name="keywords" content="reparación maquinaria, renta herramientas, Nayarit, Bahía de Banderas, motores gasolina, demoleadores, taladros, plantas de luz">
+    <meta name="author" content="José Servicios Técnicos">
+    <meta property="og:title" content="José | Reparación y Renta de Maquinaria Ligera">
+    <meta property="og:description" content="Servicio profesional a domicilio de reparación y renta de maquinaria ligera en Bahía de Banderas, Nayarit.">
+    <meta property="og:type" content="website">
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔧</text></svg>">
     <style>
         /* --- VARIABLES & RESET --- */
-:root {
-    --primary: #F4B400; /* Amarillo Construcción */
-    --dark: #2C3E50;    /* Gris Carbón */
-    --light: #F8F9FA;   /* Blanco Humo */
-    --accent: #C0392B;  /* Rojo Acción */
-    --shadow: 0 4px 6px rgba(0,0,0,0.1);
-    --radius: 12px;
-}
+        :root {
+            --primary: #F4B400; /* Amarillo Construcción */
+            --dark: #2C3E50;    /* Gris Carbón */
+            --light: #F8F9FA;   /* Blanco Humo */
+            --accent: #C0392B;  /* Rojo Acción */
+            --accent2: #2980B9; /* Azul para inglés */
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    color: var(--dark);
-    background-color: var(--light);
-    padding-bottom: 80px; /* Espacio para botón flotante */
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-/* --- UTILITIES --- */
-.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
-h1, h2, h3 { line-height: 1.2; margin-bottom: 1rem; }
-.text-center { text-align: center; }
-.btn {
-    display: inline-block;
-    background: var(--dark);
-    color: white;
-    padding: 12px 24px;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: bold;
-    transition: transform 0.2s;
-}
-.btn:active { transform: scale(0.98); }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            padding-bottom: 80px; /* Espacio para botón flotante */
+        }
 
-/* --- HERO SECTION --- */
-header {
-    background: linear-gradient(135deg, var(--primary) 0%, #E67E22 100%);
-    color: white;
-    padding: 40px 20px;
-    text-align: center;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    box-shadow: var(--shadow);
-}
+        /* --- UTILITIES --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3, h4 { line-height: 1.2; margin-bottom: 1rem; }
+        .text-center { text-align: center; }
+        .highlight { color: var(--accent); font-weight: bold; }
+        .english-badge {
+            display: inline-block;
+            background-color: var(--accent2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--dark);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .btn:active { transform: scale(0.98); }
+        .btn-primary { background-color: var(--primary); color: black; }
+        .btn-accent { background-color: var(--accent); color: white; }
 
-/* IMAGEN MEJORADA CON CSS: José */
-.profile-img {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    object-position: top center; /* Centra la cara */
-    border-radius: 50%;
-    border: 4px solid white;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-    margin-bottom: 15px;
-    filter: contrast(1.1) saturate(1.1); /* Mejora visual */
-}
+        /* --- HERO SECTION --- */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #E67E22 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: 300px;
+            opacity: 0.3;
+        }
 
-.hero-tag {
-    background: rgba(0,0,0,0.2);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    display: inline-block;
-    margin-bottom: 10px;
-}
+        /* IMAGEN MEJORADA CON CSS: José */
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            object-position: top center; /* Centra la cara */
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            margin-bottom: 15px;
+            filter: contrast(1.1) saturate(1.1); /* Mejora visual */
+            transition: var(--transition);
+        }
+        
+        .profile-img:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
 
-/* --- SECTIONS --- */
-section { padding: 40px 0; }
+        .hero-tag {
+            background: rgba(0,0,0,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 10px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 16px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+        }
 
-/* PROPUESTA DE VALOR */
-.value-prop {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-.machine-img-container {
-    flex: 1 1 300px;
-}
-/* IMAGEN MEJORADA CON CSS: Máquina */
-.machine-img {
-    width: 100%;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    filter: sepia(0.2) contrast(1.2); /* Look "industrial" */
-}
-.features { flex: 1 1 300px; }
-.features li {
-    list-style: none;
-    margin-bottom: 10px;
-    padding-left: 24px;
-    position: relative;
-}
-.features li::before {
-    content: "✔";
-    color: var(--primary);
-    position: absolute;
-    left: 0;
-    font-weight: bold;
-}
+        /* --- SECTIONS --- */
+        section { 
+            padding: 50px 0;
+            position: relative;
+        }
+        
+        section:nth-child(even) {
+            background-color: #f1f3f5;
+        }
 
-/* SERVICIOS GRID */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-}
-.service-card {
-    background: white;
-    padding: 20px;
-    border-radius: var(--radius);
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    border: 1px solid #eee;
-}
-.service-icon { font-size: 2rem; display: block; margin-bottom: 10px; }
+        /* PROPUESTA DE VALOR */
+        .value-prop {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .machine-img-container {
+            flex: 1 1 300px;
+            position: relative;
+        }
+        
+        /* IMAGEN MEJORADA CON CSS: Máquina */
+        .machine-img {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            filter: sepia(0.2) contrast(1.2); /* Look "industrial" */
+            transition: var(--transition);
+        }
+        
+        .machine-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .features { 
+            flex: 1 1 300px; 
+        }
+        
+        .features li {
+            list-style: none;
+            margin-bottom: 15px;
+            padding-left: 28px;
+            position: relative;
+        }
+        
+        .features li::before {
+            content: "✔";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* GALERÍA DE TALADROS */
+        .gallery-section {
+            text-align: center;
+        }
+        
+        .gallery-title {
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .gallery-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            flex: 1 1 300px;
+            max-width: 400px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            padding: 15px;
+            background: white;
+            font-weight: bold;
+        }
 
-/* RENTA SECTION */
-.rent-section {
-    background-color: #E9ECEF;
-    border-radius: var(--radius);
-    padding: 30px;
-    margin-top: 20px;
-}
+        /* SERVICIOS GRID */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 25px 15px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+            border-color: var(--primary);
+        }
+        
+        .service-icon { 
+            font-size: 2.5rem; 
+            display: block; 
+            margin-bottom: 15px; 
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.2);
+        }
 
-/* --- FOOTER & FLOAT --- */
-footer {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 20px;
-    padding: 20px;
-    border-top: 1px solid #ddd;
-}
+        /* RENTA SECTION */
+        .rent-section {
+            background-color: #E9ECEF;
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rent-section::before {
+            content: "📦";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4rem;
+            opacity: 0.1;
+        }
+        
+        .rent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0 30px;
+        }
+        
+        .rent-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+        }
+        
+        /* CALL TO ACTION */
+        .cta-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(to right, var(--dark), #1a2530);
+            color: white;
+            border-radius: var(--radius);
+            margin-top: 30px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
+        }
 
-.whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25D366;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 50px;
-    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
-    text-decoration: none;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 100;
-    animation: bounce 2s infinite;
-}
+        /* --- FOOTER & FLOAT --- */
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 30px;
+            padding: 25px;
+            border-top: 1px solid #ddd;
+            background-color: #f8f9fa;
+        }
+        
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-contact a {
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        
+        .footer-contact a:hover {
+            color: var(--accent);
+        }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-5px);}
-    60% {transform: translateY(-3px);}
-}
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.5);
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+            animation: bounce 2s infinite;
+            transition: var(--transition);
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+        
+        .phone-float {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 6px 15px rgba(192, 57, 43, 0.5);
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 99;
+            transition: var(--transition);
+        }
+        
+        .phone-float:hover {
+            background-color: #A93226;
+            transform: scale(1.05);
+        }
 
-/* --- RESPONSIVE TWEAKS --- */
-@media (max-width: 600px) {
-    h1 { font-size: 1.8rem; }
-    .value-prop { flex-direction: column-reverse; }
-}
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* --- RESPONSIVE TWEAKS --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            .value-prop { flex-direction: column-reverse; }
+            .services-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+            .rent-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+            .contact-info { flex-direction: column; align-items: center; }
+            .phone-float { bottom: 85px; padding: 10px 15px; font-size: 0.9rem; }
+            .whatsapp-float { padding: 12px 20px; font-size: 0.9rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .cta-buttons .btn { width: 100%; max-width: 300px; }
+        }
+        
+        @media (max-width: 480px) {
+            header { padding: 30px 15px; }
+            section { padding: 30px 0; }
+            .rent-section { padding: 25px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
     </style>
 </head>
 <body>
-
     <header>
         <div class="container">
-            <img src="images/jose-foto.jpg" alt="José Técnico" class="profile-img">
-            <div class="hero-tag">Servicio a Domicilio 🚚</div>
-            <h1>Reparación Experta de Maquinaria Ligera</h1>
-            <p>Recupera la potencia de tus herramientas. Atención especial en Paraíso Vallarta y Altavela.</p>
+            <img src="images/jose-foto.jpg" alt="José - Técnico especialista en reparación de maquinaria ligera" class="profile-img">
+            <div class="hero-tag">Servicio a Domicilio 🚚 | <span class="english-badge">Se habla inglés</span></div>
+            <h1>Reparación Experta y Renta de Maquinaria Ligera</h1>
+            <p>Recupera la potencia de tus herramientas. Atención especial en Paraíso Vallarta, Altavela y toda Bahía de Banderas.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"/></svg>
+                    <a href="tel:+523223806138" style="color: white; text-decoration: none;">322 380 6138</a>
+                </div>
+                <div class="contact-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"/></svg>
+                    <a href="tel:+526311681816" style="color: white; text-decoration: none;">631 168 1816</a>
+                </div>
+            </div>
         </div>
     </header>
 
     <main class="container">
-        
         <section id="nosotros">
             <div class="value-prop">
                 <div class="features">
-                    <h2 style="color: var(--accent);">Diagnóstico Honesto</h2>
-                    <p>No dejes que tu obra se detenga. Soy especialista en motores a gasolina y herramientas eléctricas.</p>
+                    <h2 style="color: var(--accent);">Diagnóstico Honesto y Profesional</h2>
+                    <p>No dejes que tu obra se detenga. Soy especialista en motores a gasolina y herramientas eléctricas con más de 10 años de experiencia.</p>
                     <br>
                     <ul>
-                        <li><strong>Recolección GRATIS</strong> (Zona Altavela/Paraíso)</li>
+                        <li><strong>Recolección GRATIS</strong> (Zona Altavela/Paraíso Vallarta)</li>
                         <li>Diagnóstico preciso (se cobra revisión si no se repara)</li>
                         <li>Limpieza de carburador y mantenimiento general</li>
+                        <li>Garantía en todas las reparaciones</li>
+                        <li>Atención rápida y servicio confiable</li>
+                        <li><strong class="english-badge">Se habla inglés</strong> para clientes internacionales</li>
                     </ul>
                 </div>
                 <div class="machine-img-container">
-                    <img src="images/jose-maquina.jpg" alt="Motor desarmado reparación" class="machine-img">
+                    <img src="images/jose-maquina.jpg" alt="Motor desarmado en proceso de reparación por José" class="machine-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2 class="gallery-title">🔧 Trabajos Realizados</h2>
+            <p>Ejemplos de reparaciones realizadas con éxito:</p>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="images/taladro1.jpg" alt="Taladro reparado por José - Servicio de calidad" class="gallery-img">
+                    <div class="gallery-caption">Taladro Rotativo Reparado</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/taladro2.jpg" alt="Taladro profesional reparado - Herramienta como nueva" class="gallery-img">
+                    <div class="gallery-caption">Taladro Profesional Reparado</div>
                 </div>
             </div>
         </section>
 
         <section id="reparacion">
-            <h2 class="text-center">🛠️ ¿Qué reparamos?</h2>
+            <h2 class="text-center">🛠️ ¿Qué Reparamos?</h2>
+            <p class="text-center">Especialistas en todo tipo de maquinaria ligera para construcción y jardinería</p>
             <div class="services-grid">
                 <div class="service-card"><span class="service-icon">🔨</span>Demoledores</div>
-                <div class="service-card"><span class="service-icon">🔩</span>Taladros</div>
+                <div class="service-card"><span class="service-icon">🔩</span>Taladros Rotativos</div>
                 <div class="service-card"><span class="service-icon">⚙️</span>Esmeriles</div>
                 <div class="service-card"><span class="service-icon">⚡</span>Plantas de Luz</div>
                 <div class="service-card"><span class="service-icon">🏗️</span>Apisonadores</div>
                 <div class="service-card"><span class="service-icon">🌿</span>Desbrozadoras</div>
                 <div class="service-card"><span class="service-icon">🌳</span>Motosierras</div>
                 <div class="service-card"><span class="service-icon">🌀</span>Revolvedoras</div>
+                <div class="service-card"><span class="service-icon">🔧</span>Compresores</div>
+                <div class="service-card"><span class="service-icon">💧</span>Hidrolavadoras</div>
+                <div class="service-card"><span class="service-icon">🔌</span>Herramientas Eléctricas</div>
             </div>
         </section>
 
         <section id="renta">
+            <h2 class="text-center">📦 Renta de Equipo por Día o Semana</h2>
+            <p class="text-center">¿Necesitas herramienta para un proyecto específico? Tenemos equipo disponible para renta:</p>
+            
             <div class="rent-section">
-                <h3>📦 También tenemos Renta de Equipo</h3>
-                <p>¿Te falta herramienta? Renta por día o semana:</p>
-                <ul style="margin: 15px 0 15px 20px;">
-                    <li>Sierra circular de madera</li>
-                    <li>Compresor</li>
-                    <li>Karcher (Hidrolavadora)</li>
-                    <li>Motosierra</li>
-                </ul>
-                <a href="https://wa.me/523223806138?text=Hola%20Jose,%20me%20interesa%20rentar%20equipo" class="btn" style="background-color: var(--primary); color: black;">Consultar Disponibilidad</a>
+                <h3>Equipo Disponible para Renta</h3>
+                <div class="rent-grid">
+                    <div class="rent-item">Esmeril de 4 pulgadas</div>
+                    <div class="rent-item">Esmeril de 7 pulgadas</div>
+                    <div class="rent-item">Sierra circular para madera</div>
+                    <div class="rent-item">Taladro rotomartillo</div>
+                    <div class="rent-item">Compresor 25 litros</div>
+                    <div class="rent-item">Motorsierra profesional</div>
+                    <div class="rent-item">Karcher (Hidrolavadora)</div>
+                </div>
+                
+                <div class="cta-buttons">
+                    <a href="https://wa.me/523223806138?text=Hola%20José,%20me%20interesa%20rentar%20equipo%20y%20quiero%20saber%20disponibilidad%20y%20precios" class="btn btn-primary">Consultar Disponibilidad por WhatsApp</a>
+                    <a href="tel:+526311681816" class="btn btn-accent">Llamar para Renta: 631 168 1816</a>
+                </div>
             </div>
         </section>
-
+        
+        <section id="contacto">
+            <div class="cta-section">
+                <h2>¿Listo para recuperar tu maquinaria?</h2>
+                <p>Contacta hoy mismo para diagnóstico gratuito o cotización de renta de equipo.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/523223806138?text=Hola%20José,%20tengo%20una%20máquina%20que%20necesita%20reparación,%20¿puedes%20ayudarme?" class="btn btn-primary">WhatsApp para Reparación</a>
+                    <a href="tel:+523223806138" class="btn" style="background: white; color: var(--dark);">Llamar: 322 380 6138</a>
+                </div>
+                <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.9;">Disponible de lunes a sábado, 8:00 am - 6:00 pm</p>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p><strong>Ubicación:</strong> Bahía de Banderas, Nayarit.</p>
-        <p>Servicio exclusivo a domicilio.</p>
-        <p style="margin-top: 10px; font-size: 0.8rem;">&copy; 2025 Servicios Técnicos José</p>
+        <div class="footer-contact">
+            <a href="tel:+523223806138">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"/></svg>
+                Teléfono 1: 322 380 6138
+            </a>
+            <a href="tel:+526311681816">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"/></svg>
+                Teléfono 2: 631 168 1816
+            </a>
+        </div>
+        <p><strong>Ubicación:</strong> Bahía de Banderas, Nayarit. Servicio a domicilio en Paraíso Vallarta, Altavela y zonas aledañas.</p>
+        <p><span class="english-badge">English spoken</span> - We provide service to English-speaking clients</p>
+        <p style="margin-top: 15px; font-size: 0.8rem;">&copy; 2025 Servicios Técnicos José - Reparación y Renta de Maquinaria Ligera</p>
     </footer>
 
-    <a href="https://wa.me/523223806138?text=Hola%20Jose,%20tengo%20una%20maquina%20que%20necesita%20reparacion" class="whatsapp-float" target="_blank">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-        Cotizar por WhatsApp
+    <!-- Botones flotantes -->
+    <a href="tel:+523223806138" class="phone-float">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"/></svg>
+        Llamar
     </a>
-
+    
+    <a href="https://wa.me/523223806138?text=Hola%20José,%20tengo%20una%20máquina%20que%20necesita%20reparación" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        WhatsApp
+    </a>
 </body>
 </html>
