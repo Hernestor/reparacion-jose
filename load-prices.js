@@ -93,6 +93,17 @@ document.addEventListener('DOMContentLoaded', function() {
         return categoryMap[category] || 'category-herramientas';
     }
 
+    // Obtener texto para categoría
+    function getCategoryText(category) {
+        const categoryText = {
+            'herramientas': 'Herramienta',
+            'equipo': 'Equipo',
+            'jardineria': 'Jardinería',
+            'limpieza': 'Limpieza'
+        };
+        return categoryText[category] || 'Herramienta';
+    }
+
     // Renderizar la tabla de precios
     function renderPricingTable(data) {
         const herramientas = data.herramientas;
@@ -117,10 +128,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 herramienta.porcentaje_descuento_semanal
             );
             
-            const isPopular = index === 2 || herramienta.precio_diario <= 400;
             const categoryClass = getCategoryClass(herramienta.categoria);
-            
-            const rowClass = `table-row dynamic-row ${isPopular ? 'popular-row' : ''}`;
+            const categoryText = getCategoryText(herramienta.categoria);
+            const rowClass = `table-row dynamic-row`;
             const delay = index * 0.1;
             
             html += `
@@ -129,16 +139,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="equipo-name">
                             <i class="${herramienta.icono || 'fas fa-tools'}"></i>
                             ${herramienta.nombre}
-                            <span class="category-badge ${categoryClass}">
-                                ${herramienta.categoria || 'herramientas'}
-                            </span>
                         </div>
-                        ${isPopular ? 
-                            `<div class="popular-badge">
-                                <i class="fas fa-crown"></i> RECOMENDADO
-                            </div>` 
-                            : ''
-                        }
+                        <div class="category-badge ${categoryClass}">
+                            ${categoryText}
+                        </div>
                     </div>
                     <div class="table-cell price-cell">
                         <div class="price">
@@ -159,12 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <div class="save-percent">
                             (${calculations.percentage}% de descuento)
-                        </div>
-                        <div class="save-detail">
-                            ${config.mostrar_ahorro_porcentaje ? 
-                                `Equivalente a ${(7 * (1 - herramienta.porcentaje_descuento_semanal)).toFixed(1)} días` 
-                                : ''
-                            }
                         </div>
                     </div>
                 </div>
@@ -218,7 +216,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cargar datos inicialmente
     loadToolData();
-
-    // Actualizar automáticamente cada 5 minutos (opcional)
-    // setInterval(loadToolData, 5 * 60 * 1000);
 });

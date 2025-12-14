@@ -54,6 +54,6 @@
     "moneda": "MXN",
     "simbolo_moneda": "$",
     "dias_semana": 7,
-    "mostrar_ahorro_porcentaje": true
+    "mostrar_ahorro_porcentaje": false
   }
 }
