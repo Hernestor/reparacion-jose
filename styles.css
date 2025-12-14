@@ -1118,3 +1118,149 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* ============================================
+   ESTILOS PARA TABLA DINÁMICA
+   ============================================ */
+.table-loading {
+    text-align: center;
+    padding: 60px;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.price-summary {
+    background: #f8f9fa;
+    border-radius: var(--radius);
+    padding: 20px;
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.summary-item i {
+    color: var(--primary);
+}
+
+.btn-refresh {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-refresh:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-refresh:active {
+    transform: scale(0.95);
+}
+
+/* Estilos para las filas generadas dinámicamente */
+.dynamic-row {
+    animation: fadeIn 0.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Estilos para categorías */
+.category-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-left: 10px;
+    text-transform: uppercase;
+}
+
+.category-herramientas {
+    background: rgba(244, 180, 0, 0.1);
+    color: #b8860b;
+}
+
+.category-equipo {
+    background: rgba(52, 152, 219, 0.1);
+    color: #2980b9;
+}
+
+.category-jardineria {
+    background: rgba(46, 204, 113, 0.1);
+    color: #27ae60;
+}
+
+.category-limpieza {
+    background: rgba(155, 89, 182, 0.1);
+    color: #8e44ad;
+}
+
+/* Responsive para la tabla dinámica */
+@media (max-width: 768px) {
+    .dynamic-row .table-cell:nth-child(2)::before {
+        content: "Día: ";
+        font-weight: bold;
+        color: #666;
+    }
+    
+    .dynamic-row .table-cell:nth-child(3)::before {
+        content: "Semana: ";
+        font-weight: bold;
+        color: #666;
+    }
+    
+    .dynamic-row .table-cell:nth-child(4)::before {
+        content: "Ahorras: ";
+        font-weight: bold;
+        color: #666;
+    }
+    
+    .price-summary {
+        flex-direction: column;
+        align-items: center;
+    }
+}

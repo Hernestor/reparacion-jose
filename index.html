@@ -245,138 +245,29 @@
             </div>
         </section>
 
-        <!-- SECCIÓN: RENTA CON PRECIOS -->
-        <section class="rent-section">
+        <!-- SECCIÓN: RENTA CON PRECIOS DINÁMICOS -->
+        <section class="rent-section" id="renta-dinamica">
             <h2 class="section-title">📦 <span class="highlight">Renta de Equipo</span> por día o semana</h2>
             <p class="section-subtitle">¿Necesitas herramienta para un proyecto? ¡No compres, renta!</p>
             
-            <!-- TABLA DE PRECIOS -->
-            <div class="pricing-table">
-                <div class="table-header">
-                    <div class="header-item">Equipo</div>
-                    <div class="header-item">Precio por Día</div>
-                    <div class="header-item">Precio por Semana</div>
-                    <div class="header-item">¡AHORRA!</div>
+            <!-- TABLA DE PRECIOS DINÁMICA -->
+            <div id="pricing-table-container" class="pricing-table">
+                <!-- Los datos se cargarán aquí con JavaScript -->
+                <div class="table-loading">
+                    <div class="loading-spinner"></div>
+                    <p>Cargando precios de renta...</p>
                 </div>
-                
-                <!-- FILA 1 - POPULAR -->
-                <div class="table-row popular-row">
-                    <div class="table-cell">
-                        <div class="equipo-name">Sierra Circular para Madera</div>
-                        <div class="popular-badge"><i class="fas fa-crown"></i> MÁS RENTADO</div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$220 <span class="price-period">/día</span></div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$600 <span class="price-period">/semana</span></div>
-                    </div>
-                    <div class="table-cell save-cell">
-                        <div class="save-amount">¡Ahorras $340!</div>
-                        <div class="save-percent">(27% de descuento)</div>
-                    </div>
+            </div>
+            
+            <!-- RESUMEN DE PRECIOS -->
+            <div class="price-summary" id="price-summary">
+                <div class="summary-item">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Precios calculados para <strong id="total-herramientas">0</strong> herramientas disponibles</span>
                 </div>
-                
-                <!-- FILA 2 -->
-                <div class="table-row">
-                    <div class="table-cell">
-                        <div class="equipo-name">Esmeril 4"</div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$150 <span class="price-period">/día</span></div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$400 <span class="price-period">/semana</span></div>
-                    </div>
-                    <div class="table-cell save-cell">
-                        <div class="save-amount">¡Ahorras $250!</div>
-                        <div class="save-percent">(30% de descuento)</div>
-                    </div>
-                </div>
-                
-                <!-- FILA 3 -->
-                <div class="table-row">
-                    <div class="table-cell">
-                        <div class="equipo-name">Esmeril 7"</div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$200 <span class="price-period">/día</span></div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$550 <span class="price-period">/semana</span></div>
-                    </div>
-                    <div class="table-cell save-cell">
-                        <div class="save-amount">¡Ahorras $350!</div>
-                        <div class="save-percent">(28% de descuento)</div>
-                    </div>
-                </div>
-                
-                <!-- FILA 4 -->
-                <div class="table-row">
-                    <div class="table-cell">
-                        <div class="equipo-name">Taladro Rotativo</div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$180 <span class="price-period">/día</span></div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$450 <span class="price-period">/semana</span></div>
-                    </div>
-                    <div class="table-cell save-cell">
-                        <div class="save-amount">¡Ahorras $270!</div>
-                        <div class="save-percent">(30% de descuento)</div>
-                    </div>
-                </div>
-                
-                <!-- FILA 5 -->
-                <div class="table-row">
-                    <div class="table-cell">
-                        <div class="equipo-name">Compresor 25 litros</div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$280 <span class="price-period">/día</span></div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$750 <span class="price-period">/semana</span></div>
-                    </div>
-                    <div class="table-cell save-cell">
-                        <div class="save-amount">¡Ahorras $470!</div>
-                        <div class="save-percent">(28% de descuento)</div>
-                    </div>
-                </div>
-                
-                <!-- FILA 6 -->
-                <div class="table-row">
-                    <div class="table-cell">
-                        <div class="equipo-name">Motorsierra</div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$330 <span class="price-period">/día</span></div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$900 <span class="price-period">/semana</span></div>
-                    </div>
-                    <div class="table-cell save-cell">
-                        <div class="save-amount">¡Ahorras $570!</div>
-                        <div class="save-percent">(25% de descuento)</div>
-                    </div>
-                </div>
-                
-                <!-- FILA 7 -->
-                <div class="table-row">
-                    <div class="table-cell">
-                        <div class="equipo-name">Karcher (Hidrolavadora)</div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$250 <span class="price-period">/día</span></div>
-                    </div>
-                    <div class="table-cell price-cell">
-                        <div class="price">$650 <span class="price-period">/semana</span></div>
-                    </div>
-                    <div class="table-cell save-cell">
-                        <div class="save-amount">¡Ahorras $400!</div>
-                        <div class="save-percent">(27% de descuento)</div>
-                    </div>
+                <div class="summary-item">
+                    <i class="fas fa-percentage"></i>
+                    <span>Descuento semanal aplicado automáticamente</span>
                 </div>
             </div>
             
@@ -391,6 +282,11 @@
                         <i class="fas fa-phone-alt"></i> LLAMAR: 631 168 1816
                     </a>
                 </div>
+                
+                <!-- Botón para actualizar precios -->
+                <button id="refresh-prices" class="btn-refresh">
+                    <i class="fas fa-sync-alt"></i> Actualizar precios
+                </button>
             </div>
         </section>
 
@@ -692,5 +588,7 @@
             });
         });
     </script>
+    <!-- Script para cargar precios dinámicos -->
+    <script src="load-prices.js"></script>
 </body>
 </html>

@@ -1,0 +1,59 @@
+{
+  "herramientas": [
+    {
+      "nombre": "Esmeril de 4 pulgadas",
+      "precio_diario": 280,
+      "porcentaje_descuento_semanal": 0.1428,
+      "icono": "fas fa-cog",
+      "categoria": "herramientas"
+    },
+    {
+      "nombre": "Esmeril de 7 pulgadas",
+      "precio_diario": 350,
+      "porcentaje_descuento_semanal": 0.15,
+      "icono": "fas fa-cog",
+      "categoria": "herramientas"
+    },
+    {
+      "nombre": "Taladro rotomartillo",
+      "precio_diario": 400,
+      "porcentaje_descuento_semanal": 0.15,
+      "icono": "fas fa-screwdriver",
+      "categoria": "herramientas"
+    },
+    {
+      "nombre": "Compresor 25 litros",
+      "precio_diario": 400,
+      "porcentaje_descuento_semanal": 0.15,
+      "icono": "fas fa-compress-arrows-alt",
+      "categoria": "equipo"
+    },
+    {
+      "nombre": "Sierra circular",
+      "precio_diario": 380,
+      "porcentaje_descuento_semanal": 0.15,
+      "icono": "fas fa-cut",
+      "categoria": "herramientas"
+    },
+    {
+      "nombre": "Motorsiera",
+      "precio_diario": 900,
+      "porcentaje_descuento_semanal": 0.15,
+      "icono": "fas fa-tree",
+      "categoria": "jardineria"
+    },
+    {
+      "nombre": "Karcher (Hidrolavadora)",
+      "precio_diario": 320,
+      "porcentaje_descuento_semanal": 0.15,
+      "icono": "fas fa-spray-can",
+      "categoria": "limpieza"
+    }
+  ],
+  "config": {
+    "moneda": "MXN",
+    "simbolo_moneda": "$",
+    "dias_semana": 7,
+    "mostrar_ahorro_porcentaje": true
+  }
+}
