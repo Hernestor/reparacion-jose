@@ -314,11 +314,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const statsHtml = `
                 <div class="summary-item">
                     <i class="fas fa-chart-line"></i>
-                    <span>Precio promedio: <strong>${formatter.format(avgDailyPrice)}/día</strong></span>
+                    <span>Precio promedio: <strong>${formatter.format(avgDailyPrice)}</strong> /día</span>
                 </div>
                 <div class="summary-item">
                     <i class="fas fa-tags"></i>
-                    <span>Descuento promedio: <strong>${avgDiscount}%</strong> por semana</span>
+                    <span>Descuento promedio: <strong>${avgDiscount}%</strong> /semana</span>
                 </div>`;
             
             summaryContainer.insertAdjacentHTML('beforeend', statsHtml);
