@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const rentBtn = imageModal.querySelector('.modal-rent-btn');
         rentBtn.addEventListener('click', function() {
             const toolName = document.getElementById('modal-title').textContent;
-            const whatsappUrl = `https://wa.me/523223806138?text=Hola%20José,%20quiero%20rentar:%20${encodeURIComponent(toolName)}.%20¿Disponible?`;
+            const whatsappUrl = `https://wa.me/5216311681816?text=Hola%20José,%20quiero%20rentar:%20${encodeURIComponent(toolName)}.%20¿Disponible?`;
             window.open(whatsappUrl, '_blank');
             closeModal();
         });
