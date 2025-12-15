@@ -1,20 +1,17 @@
-// load-prices.js - Carga dinámica de precios desde JSON
-
+// load-prices.js - Versión optimizada con filas completas clickables
 document.addEventListener('DOMContentLoaded', function() {
     // Configuración
     const CONFIG = {
         jsonFile: 'herramientas.json',
         containerId: 'pricing-table-container',
         summaryId: 'price-summary',
-        totalToolsId: 'total-herramientas',
-        refreshButtonId: 'refresh-prices'
+        totalToolsId: 'total-herramientas'
     };
 
-    // Elementos del DOM
+    // Elementos DOM
     const container = document.getElementById(CONFIG.containerId);
     const summaryContainer = document.getElementById(CONFIG.summaryId);
     const totalToolsElement = document.getElementById(CONFIG.totalToolsId);
-    const refreshButton = document.getElementById(CONFIG.refreshButtonId);
 
     // Formateador de moneda
     const formatter = new Intl.NumberFormat('es-MX', {
@@ -24,52 +21,53 @@ document.addEventListener('DOMContentLoaded', function() {
         maximumFractionDigits: 0
     });
 
-    // Cargar datos de herramientas
+    // Datos globales
+    let herramientas = [];
+    let imageModal = null;
+
+    // Cargar datos
     async function loadToolData() {
         try {
             showLoading();
             
             const response = await fetch(CONFIG.jsonFile);
-            if (!response.ok) {
-                throw new Error(`Error HTTP: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
             
             const data = await response.json();
-            renderPricingTable(data);
-            updateSummary(data);
+            herramientas = data.herramientas;
+            renderPricingTable();
+            updateSummary();
+            createImageModal();
             
         } catch (error) {
-            console.error('Error cargando los datos:', error);
-            showError(error);
+            console.error('Error cargando datos:', error);
+            showError();
         }
     }
 
-    // Mostrar estado de carga
+    // Mostrar carga
     function showLoading() {
         container.innerHTML = `
             <div class="table-loading">
                 <div class="loading-spinner"></div>
                 <p>Cargando precios de renta...</p>
-            </div>
-        `;
+            </div>`;
     }
 
     // Mostrar error
-    function showError(error) {
+    function showError() {
         container.innerHTML = `
             <div class="error-message">
                 <i class="fas fa-exclamation-triangle"></i>
                 <h3>Error cargando precios</h3>
-                <p>No se pudieron cargar los precios de renta. Por favor, contacta directamente para consultar disponibilidad.</p>
-                <p class="error-detail">${error.message}</p>
+                <p>Contacta directamente para consultar disponibilidad.</p>
                 <button onclick="location.reload()" class="btn btn-primary">
                     <i class="fas fa-redo"></i> Reintentar
                 </button>
-            </div>
-        `;
+            </div>`;
     }
 
-    // Calcular precio semanal con descuento
+    // Calcular precio semanal con descuento redondeado
     function calculateWeeklyPrice(dailyPrice, discountPercentage) {
         const weeklyPriceWithoutDiscount = dailyPrice * 7;
         const discountAmount = weeklyPriceWithoutDiscount * discountPercentage;
@@ -78,11 +76,11 @@ document.addEventListener('DOMContentLoaded', function() {
         return {
             weekly: Math.round(weeklyPriceWithDiscount),
             discount: Math.round(discountAmount),
-            percentage: (discountPercentage * 100).toFixed(1)
+            percentage: Math.round(discountPercentage * 100)
         };
     }
 
-    // Obtener clase CSS para categoría
+    // Clase CSS para categoría
     function getCategoryClass(category) {
         const categoryMap = {
             'herramientas': 'category-herramientas',
@@ -93,34 +91,116 @@ document.addEventListener('DOMContentLoaded', function() {
         return categoryMap[category] || 'category-herramientas';
     }
 
-    // Obtener texto para categoría
+    // Texto para categoría
     function getCategoryText(category) {
         const categoryText = {
-            'herramientas': 'Herramienta',
-            'equipo': 'Equipo',
-            'jardineria': 'Jardinería',
-            'limpieza': 'Limpieza'
+            'herramientas': 'HERRAMIENTA',
+            'equipo': 'EQUIPO',
+            'jardineria': 'JARDINERÍA',
+            'limpieza': 'LIMPIEZA'
         };
-        return categoryText[category] || 'Herramienta';
+        return categoryText[category] || 'HERRAMIENTA';
     }
 
-    // Renderizar la tabla de precios
-    function renderPricingTable(data) {
-        const herramientas = data.herramientas;
-        const config = data.config || {};
+    // Crear modal para imágenes
+    function createImageModal() {
+        imageModal = document.createElement('div');
+        imageModal.className = 'image-modal';
+        imageModal.innerHTML = `<div class="image-modal active">
+              <div class="modal-overlay"></div>
+              <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <div class="modal-image-container">
+                  <img id="modal-image" src="" alt="Herramienta en tamaño completo">
+                  <button class="btn btn-whatsapp modal-rent-btn">
+                    <i class="fab fa-whatsapp"></i> RENTAR AHORA
+                  </button>
+                  <div class="modal-info">
+                    <span id="modal-title"></span>
+                    <span id="modal-price-day"></span>
+                  </div>
+                </div>
+              </div>
+            </div>`;
         
-        let html = `
-            <div class="pricing-table">
+        document.body.appendChild(imageModal);
+        
+        // Event listeners
+        const closeBtn = imageModal.querySelector('.modal-close');
+        const overlay = imageModal.querySelector('.modal-overlay');
+        
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', closeModal);
+        
+        // Botón rentar
+        const rentBtn = imageModal.querySelector('.modal-rent-btn');
+        rentBtn.addEventListener('click', function() {
+            const toolName = document.getElementById('modal-title').textContent;
+            const whatsappUrl = `https://wa.me/523223806138?text=Hola%20José,%20quiero%20rentar:%20${encodeURIComponent(toolName)}.%20¿Disponible?`;
+            window.open(whatsappUrl, '_blank');
+            closeModal();
+        });
+        
+        // Cerrar con ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+
+    // Mostrar modal
+    function showModal(toolData, calculations) {
+        const modalImg = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalPriceDay = document.getElementById('modal-price-day');
+        //const modalPriceWeek = document.getElementById('modal-price-week');
+        
+        const imagePath = toolData.image ? `images/${toolData.image}` : 'images/default-tool.jpg';
+        
+        modalImg.src = imagePath;
+        modalImg.alt = toolData.nombre;
+        modalTitle.textContent = toolData.nombre;
+        modalPriceDay.textContent = `${formatter.format(toolData.precio_diario)} por día`;
+        //modalPriceWeek.textContent = `Semana: ${formatter.format(calculations.weekly)} (${calculations.percentage}% descuento)`;
+        
+        imageModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Asegurar que la imagen se cargue correctamente
+        modalImg.onload = function() {
+            // Forzar reflow para asegurar scroll
+            modalImg.parentElement.scrollTop = 0;
+        };
+    }
+
+    // Cerrar modal
+    function closeModal() {
+        imageModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Renderizar tabla con filas clickables
+    // Renderizar tabla con filas clickables
+    function renderPricingTable() {
+        // Ordenar por precio
+        herramientas.sort((a, b) => a.precio_diario - b.precio_diario);
+        
+        // Detect if we're on a small viewport (mobile)
+        const isSmallViewport = window.innerWidth <= 768; // Adjust breakpoint as needed
+        
+        let html = '';
+        
+        // Only add header row if NOT small viewport
+        if (!isSmallViewport) {
+            html += `
                 <div class="table-header">
                     <div class="header-item">Equipo</div>
                     <div class="header-item">Precio por Día</div>
                     <div class="header-item">Precio por Semana</div>
                     <div class="header-item">¡AHORRA!</div>
-                </div>
-        `;
-
-        // Ordenar herramientas por precio diario
-        herramientas.sort((a, b) => a.precio_diario - b.precio_diario);
+                </div>`;
+        }
 
         herramientas.forEach((herramienta, index) => {
             const calculations = calculateWeeklyPrice(
@@ -130,34 +210,41 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const categoryClass = getCategoryClass(herramienta.categoria);
             const categoryText = getCategoryText(herramienta.categoria);
-            const rowClass = `table-row dynamic-row`;
-            const delay = index * 0.1;
             
+            // For small viewports, remove data-labels and simplify structure
             html += `
-                <div class="${rowClass}" style="animation-delay: ${delay}s">
-                    <div class="table-cell">
-                        <div class="equipo-name">
-                            <i class="${herramienta.icono || 'fas fa-tools'}"></i>
-                            ${herramienta.nombre}
-                        </div>
-                        <div class="category-badge ${categoryClass}">
-                            ${categoryText}
+                <div class="table-row dynamic-row clickable-row" 
+                     style="animation-delay: ${index * 0.1}s"
+                     data-index="${index}"
+                     role="button"
+                     tabindex="0"
+                     aria-label="Ver detalles de ${herramienta.nombre}">
+                    <div class="table-cell" ${isSmallViewport ? '' : 'data-label="Equipo"'}>
+                        <div class="equipo-info">
+                            <div class="equipo-icon">
+                                <i class="${herramienta.icono || 'fas fa-tools'}"></i>
+                            </div>
+                            <div class="equipo-details">
+                                <div class="equipo-name">${herramienta.nombre}</div>
+                                <div class="category-badge ${categoryClass}">
+                                    <span class="badge-text">${categoryText}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="table-cell price-cell">
+                    <div class="table-cell" ${isSmallViewport ? '' : 'data-label="Precio por Día"'}>
                         <div class="price">
                             ${formatter.format(herramienta.precio_diario)} 
                             <span class="price-period">/día</span>
                         </div>
                     </div>
-                    <div class="table-cell price-cell">
+                    <div class="table-cell" ${isSmallViewport ? '' : 'data-label="Precio por Semana"'}>
                         <div class="price">
                             ${formatter.format(calculations.weekly)} 
                             <span class="price-period">/semana</span>
                         </div>
-                        <div class="price-note">(7 días)</div>
                     </div>
-                    <div class="table-cell save-cell">
+                    <div class="table-cell" ${isSmallViewport ? '' : 'data-label="¡Ahorras!"'}>
                         <div class="save-amount">
                             ¡Ahorras ${formatter.format(calculations.discount)}!
                         </div>
@@ -165,20 +252,52 @@ document.addEventListener('DOMContentLoaded', function() {
                             (${calculations.percentage}% de descuento)
                         </div>
                     </div>
-                </div>
-            `;
+                </div>`;
         });
 
-        html += `</div>`;
         container.innerHTML = html;
+        
+        // Event listeners para filas clickables
+        setTimeout(() => {
+            document.querySelectorAll('.clickable-row').forEach(row => {
+                // Click
+                row.addEventListener('click', function(e) {
+                    // Evitar si se hizo clic en un enlace dentro de la fila
+                    if (e.target.closest('a')) return;
+                    
+                    const index = parseInt(this.getAttribute('data-index'));
+                    const toolData = herramientas[index];
+                    const calculations = calculateWeeklyPrice(
+                        toolData.precio_diario, 
+                        toolData.porcentaje_descuento_semanal
+                    );
+                    showModal(toolData, calculations);
+                });
+                
+                // Keyboard support (Enter/Space)
+                row.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const index = parseInt(this.getAttribute('data-index'));
+                        const toolData = herramientas[index];
+                        const calculations = calculateWeeklyPrice(
+                            toolData.precio_diario, 
+                            toolData.porcentaje_descuento_semanal
+                        );
+                        showModal(toolData, calculations);
+                    }
+                });
+                
+                // Hover effects
+                row.addEventListener('mouseenter', function() {
+                    this.style.cursor = 'pointer';
+                });
+            });
+        }, 100);
     }
 
     // Actualizar resumen
-    function updateSummary(data) {
-        const herramientas = data.herramientas;
-        const config = data.config || {};
-        
-        // Calcular estadísticas
+    function updateSummary() {
         const totalTools = herramientas.length;
         const avgDailyPrice = Math.round(
             herramientas.reduce((sum, h) => sum + h.precio_diario, 0) / totalTools
@@ -187,12 +306,10 @@ document.addEventListener('DOMContentLoaded', function() {
             herramientas.reduce((sum, h) => sum + h.porcentaje_descuento_semanal * 100, 0) / totalTools
         );
         
-        // Actualizar contador
         if (totalToolsElement) {
             totalToolsElement.textContent = totalTools;
         }
         
-        // Añadir estadísticas al resumen
         if (summaryContainer) {
             const statsHtml = `
                 <div class="summary-item">
@@ -202,18 +319,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="summary-item">
                     <i class="fas fa-tags"></i>
                     <span>Descuento promedio: <strong>${avgDiscount}%</strong> por semana</span>
-                </div>
-            `;
+                </div>`;
             
             summaryContainer.insertAdjacentHTML('beforeend', statsHtml);
         }
     }
 
-    // Evento para botón de actualizar
-    if (refreshButton) {
-        refreshButton.addEventListener('click', loadToolData);
-    }
-
-    // Cargar datos inicialmente
+    // Inicializar
     loadToolData();
 });

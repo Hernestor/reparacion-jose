@@ -21,24 +21,12 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔧</text></svg>">
     
     <!-- CSS EXTERNO -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-compacted.css">
     
     <!-- FONT AWESOME PARA ÍCONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- BANNER DE OFERTA -->
-    <div class="offer-banner" id="offerBanner">
-        <div class="container">
-            <span class="offer-text">
-                <i class="fas fa-fire"></i> 
-                <strong>OFERTA POR TIEMPO LIMITADO:</strong> 
-                Primeros 10 clientes del mes obtienen 15% OFF en su primera reparación
-            </span>
-            <button class="offer-close" onclick="closeOffer()">&times;</button>
-        </div>
-    </div>
-
     <!-- HEADER / HERO -->
     <header>
         <div class="container">
@@ -46,28 +34,12 @@
             
             <div class="hero-tags">
                 <span class="tag">🚚 Servicio a Domicilio GRATIS</span>
-                <span class="tag english-tag">🇺🇸 Se habla inglés</span>
+                <span class="tag english-tag">Se habla inglés</span>
                 <span class="tag">✅ Diagnóstico SIN COSTO</span>
             </div>
             
             <h1>¡Tu obra NO tiene que detenerse!</h1>
             <p class="hero-subtitle">Reparación <strong>exprés</strong> y renta de maquinaria ligera en <strong>Bahía de Banderas</strong></p>
-            
-            <!-- MÉTRICAS DE CONFIANZA -->
-            <div class="trust-metrics">
-                <div class="metric">
-                    <div class="metric-number">+500</div>
-                    <div class="metric-label">Equipos Reparados</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-number">98%</div>
-                    <div class="metric-label">Clientes Satisfechos</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-number">24-48h</div>
-                    <div class="metric-label">Tiempo Promedio</div>
-                </div>
-            </div>
             
             <!-- CONTACTO HEADER -->
             <div class="contact-info">
@@ -75,14 +47,14 @@
                     <i class="fas fa-phone-alt"></i>
                     <div>
                         <div class="contact-label">Línea Directa</div>
-                        <a href="tel:+523223806138" class="contact-link">322 380 6138</a>
+                        <a href="tel:3223806138" class="contact-link">322 380 6138</a>
                     </div>
                 </div>
                 <div class="contact-item">
-                    <i class="fas fa-mobile-alt"></i>
+                    <i class="fab fa-whatsapp"></i>
                     <div>
-                        <div class="contact-label">Teléfono Alterno</div>
-                        <a href="tel:+526311681816" class="contact-link">631 168 1816</a>
+                        <div class="contact-label">Teléfono Alterno 🇺🇸 </div>
+                        <a href="https://wa.me/5216311681816" class="contact-link">631 168 1816</a>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -94,15 +66,7 @@
                 </div>
             </div>
             
-            <!-- CTA PRINCIPAL -->
-            <div class="hero-cta">
-                <a href="https://wa.me/523223806138?text=Hola%20José,%20necesito%20ayuda%20con%20una%20máquina.%20¿Podrías%20orientarme?" class="btn btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> COTIZAR POR WHATSAPP
-                </a>
-                <a href="tel:+523223806138" class="btn btn-call">
-                    <i class="fas fa-phone-alt"></i> LLAMAR AHORA
-                </a>
-            </div>
+            
         </div>
     </header>
 
@@ -242,51 +206,47 @@
                     <img src="images/jose-maquina.jpg" alt="Motor desarmado en proceso de reparación" class="gallery-img">
                     <div class="gallery-caption">Motor a gasolina - Limpieza de carburador</div>
                 </div>
+
+                <div class="gallery-item">
+                    <img src="images/demoledor1.jpg" alt="Armado de demoledor" class="gallery-img">
+                    <div class="gallery-caption">Armado de demoledor</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/demoledor2.jpg" alt="Armado de demoledor" class="gallery-img">
+                    <div class="gallery-caption">Demoledor</div>
+                </div>
             </div>
         </section>
 
         <!-- SECCIÓN: RENTA CON PRECIOS DINÁMICOS -->
         <section class="rent-section" id="renta-dinamica">
             <h2 class="section-title">📦 <span class="highlight">Renta de Equipo</span> por día o semana</h2>
-            <p class="section-subtitle">¿Necesitas herramienta para un proyecto? ¡No compres, renta!</p>
+            <p class="section-subtitle">Haz clic en cualquier fila para ver fotos reales del equipo</p>
             
-            <!-- TABLA DE PRECIOS DINÁMICA -->
-            <div id="pricing-table-container" class="pricing-table">
-                <!-- Los datos se cargarán aquí con JavaScript -->
-                <div class="table-loading">
-                    <div class="loading-spinner"></div>
-                    <p>Cargando precios de renta...</p>
+            <div class="pricing-table">
+                <div id="pricing-table-container">
+                    <!-- Cargado dinámicamente -->
                 </div>
             </div>
             
-            <!-- RESUMEN DE PRECIOS -->
             <div class="price-summary" id="price-summary">
                 <div class="summary-item">
                     <i class="fas fa-info-circle"></i>
-                    <span>Precios calculados para <strong id="total-herramientas">0</strong> herramientas disponibles</span>
-                </div>
-                <div class="summary-item">
-                    <i class="fas fa-percentage"></i>
-                    <span>Descuento semanal aplicado automáticamente</span>
+                    <span><strong id="total-herramientas">0</strong> herramientas disponibles</span>
                 </div>
             </div>
             
-            <!-- CTA RENTA -->
             <div class="rent-cta">
                 <h3>📞 ¿Necesitas otro equipo o quieres consultar disponibilidad?</h3>
                 <div class="cta-buttons">
-                    <a href="https://wa.me/523223806138?text=Hola%20José,%20quiero%20rentar%20equipo.%20¿Qué%20tienes%20disponible%20para%20[FECHA]?" class="btn btn-whatsapp">
+                    <a href="https://wa.me/5216311681816?text=Hola%20José,%20quiero%20rentar%20equipo" class="btn btn-whatsapp">
                         <i class="fab fa-whatsapp"></i> CONSULTAR RENTA
                     </a>
-                    <a href="tel:+526311681816" class="btn btn-call">
-                        <i class="fas fa-phone-alt"></i> LLAMAR: 631 168 1816
+                    <a href="tel:3223806138" class="btn btn-call">
+                        <i class="fas fa-phone-alt"></i> LLAMAR: 322 380 6138
                     </a>
                 </div>
-                
-                <!-- Botón para actualizar precios -->
-                <button id="refresh-prices" class="btn-refresh">
-                    <i class="fas fa-sync-alt"></i> Actualizar precios
-                </button>
             </div>
         </section>
 
@@ -297,11 +257,11 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "José reparó mi demoleador en menos de 24 horas. Pensé que estaba perdido, ¡y ahora funciona mejor que nuevo! Totalmente recomendado."
+                        "José reparó mi demoledor en menos de 24 horas. Pensé que estaba perdido, ¡y ahora funciona mejor que nuevo! Totalmente recomendado."
                     </div>
                     <div class="testimonial-author">
                         <div class="author-name">Carlos M.</div>
-                        <div class="author-detail">Constructor en Altavela</div>
+                        <div class="author-detail">Albañil en Altavela</div>
                     </div>
                     <div class="testimonial-rating">
                         <i class="fas fa-star"></i>
@@ -441,23 +401,13 @@
             <div class="cta-content">
                 <h2>¿Listo para recuperar tu maquinaria?</h2>
                 <p class="cta-subtitle">Contacta hoy mismo para diagnóstico gratuito o cotización de renta</p>
-                
-                <div class="cta-offer">
-                    <div class="offer-card">
-                        <div class="offer-icon"><i class="fas fa-gift"></i></div>
-                        <div class="offer-text">
-                            <h4>Oferta especial para nuevos clientes</h4>
-                            <p>15% OFF en tu primera reparación</p>
-                        </div>
-                    </div>
-                </div>
-                
+            
                 <div class="cta-buttons">
-                    <a href="https://wa.me/523223806138?text=Hola%20José,%20quiero%20el%2015%%20OFF%20en%20mi%20primera%20reparación.%20¿Podrías%20ayudarme?" class="btn btn-whatsapp btn-large">
-                        <i class="fab fa-whatsapp"></i> QUERO EL 15% OFF
+                    <a href="https://wa.me/5216311681816?text=Hola%20José,%20¿Podrías%20ayudarme?" class="btn btn-whatsapp btn-large">
+                        <i class="fab fa-whatsapp"></i> WHATSAPP
                     </a>
-                    <a href="tel:+523223806138" class="btn btn-call btn-large">
-                        <i class="fas fa-phone-alt"></i> LLAMAR: 322 380 6138
+                    <a href="tel:3223806138" class="btn btn-call btn-large">
+                        <i class="fas fa-phone-alt"></i> 322 380 6138
                     </a>
                 </div>
                 
@@ -485,15 +435,11 @@
                     <div class="footer-contact">
                         <div class="footer-contact-item">
                             <i class="fas fa-phone-alt"></i>
-                            <a href="tel:+523223806138">322 380 6138</a>
-                        </div>
-                        <div class="footer-contact-item">
-                            <i class="fas fa-mobile-alt"></i>
-                            <a href="tel:+526311681816">631 168 1816</a>
+                            <a href="tel:3223806138">322 380 6138</a>
                         </div>
                         <div class="footer-contact-item">
                             <i class="fab fa-whatsapp"></i>
-                            <a href="https://wa.me/523223806138">WhatsApp</a>
+                            <a href="https://wa.me/5216311681816">Chat de WhatsApp</a>
                         </div>
                         <div class="footer-contact-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -523,18 +469,18 @@
             
             <div class="footer-bottom">
                 <p>&copy; 2025 Servicios Técnicos José - Reparación y Renta de Maquinaria Ligera. Todos los derechos reservados.</p>
-                <p class="footer-legal">Los precios pueden cambiar sin previo aviso. Fotografías ilustrativas.</p>
+                <p class="footer-legal">Los precios pueden cambiar sin previo aviso. Fotografías de los equipos reales.</p>
             </div>
         </div>
     </footer>
 
     <!-- BOTONES FLOTANTES -->
     <div class="float-buttons">
-        <a href="tel:+523223806138" class="float-button phone-float">
+        <a href="tel:3223806138" class="float-button phone-float">
             <i class="fas fa-phone-alt"></i>
             <span class="float-text">Llamar</span>
         </a>
-        <a href="https://wa.me/523223806138?text=Hola%20José,%20tengo%20una%20máquina%20que%20necesita%20reparación" class="float-button whatsapp-float">
+        <a href="https://wa.me/5216311681816?text=Hola%20José,%20tengo%20una%20máquina%20que%20necesita%20reparación" class="float-button whatsapp-float">
             <i class="fab fa-whatsapp"></i>
             <span class="float-text">WhatsApp</span>
         </a>
@@ -542,11 +488,7 @@
 
     <!-- SCRIPTS -->
     <script>
-        // Cerrar banner de oferta
-        function closeOffer() {
-            document.getElementById('offerBanner').style.display = 'none';
-        }
-        
+    
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
@@ -564,13 +506,7 @@
             });
         });
         
-        // Contador de oferta (opcional)
-        let offerCount = 3; // Ejemplo: quedan 3 ofertas
-        const offerElement = document.querySelector('.offer-text');
-        if (offerElement && offerCount > 0) {
-            offerElement.innerHTML += ` <span class="offer-count">(Quedan ${offerCount})</span>`;
-        }
-        
+    
         // Scroll suave para anclas
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -589,6 +525,6 @@
         });
     </script>
     <!-- Script para cargar precios dinámicos -->
-    <script src="load-prices.js"></script>
+    <script src="load-prices.js?v=7"></script>
 </body>
 </html>
