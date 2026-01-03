@@ -1,5 +1,5 @@
 // load-prices.js - Versión optimizada con filas completas clickables
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Configuración
     const CONFIG = {
         jsonFile: 'herramientas.json',
@@ -24,21 +24,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Datos globales
     let herramientas = [];
     let imageModal = null;
+    let currentToolIndex = -1;
 
     // Cargar datos
     async function loadToolData() {
         try {
             showLoading();
-            
+
             const response = await fetch(CONFIG.jsonFile);
             if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
-            
+
             const data = await response.json();
             herramientas = data.herramientas;
             renderPricingTable();
             updateSummary();
             createImageModal();
-            
+
         } catch (error) {
             console.error('Error cargando datos:', error);
             showError();
@@ -72,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const weeklyPriceWithoutDiscount = dailyPrice * 7;
         const discountAmount = weeklyPriceWithoutDiscount * discountPercentage;
         const weeklyPriceWithDiscount = weeklyPriceWithoutDiscount - discountAmount;
-        
+
         return {
             weekly: Math.round(weeklyPriceWithDiscount),
             discount: Math.round(discountAmount),
@@ -106,47 +107,106 @@ document.addEventListener('DOMContentLoaded', function() {
     function createImageModal() {
         imageModal = document.createElement('div');
         imageModal.className = 'image-modal';
-        imageModal.innerHTML = `<div class="image-modal active">
+        imageModal.innerHTML = `
               <div class="modal-overlay"></div>
               <div class="modal-content">
-                <button class="modal-close">&times;</button>
+                <button class="modal-close" aria-label="Cerrar">&times;</button>
+                <button class="modal-nav prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                <button class="modal-nav next" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
                 <div class="modal-image-container">
                   <img id="modal-image" src="" alt="Herramienta en tamaño completo">
-                  <button class="btn btn-whatsapp modal-rent-btn">
-                    <i class="fab fa-whatsapp"></i> RENTAR AHORA
-                  </button>
+                </div>
+                <div class="modal-footer">
                   <div class="modal-info">
-                    <span id="modal-title"></span>
-                    <span id="modal-price-day"></span>
+                    <div class="modal-header-info">
+                        <h3 id="modal-title"></h3>
+                        <span id="modal-price-day"></span>
+                    </div>
+                    <button class="btn btn-whatsapp modal-rent-btn">
+                      <i class="fab fa-whatsapp"></i> RENTAR AHORA
+                    </button>
                   </div>
                 </div>
-              </div>
-            </div>`;
-        
+              </div>`;
+
         document.body.appendChild(imageModal);
-        
+
         // Event listeners
         const closeBtn = imageModal.querySelector('.modal-close');
         const overlay = imageModal.querySelector('.modal-overlay');
-        
+        const prevBtn = imageModal.querySelector('.modal-nav.prev');
+        const nextBtn = imageModal.querySelector('.modal-nav.next');
+
         closeBtn.addEventListener('click', closeModal);
         overlay.addEventListener('click', closeModal);
-        
+
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navigateModal(-1);
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navigateModal(1);
+        });
+
         // Botón rentar
         const rentBtn = imageModal.querySelector('.modal-rent-btn');
-        rentBtn.addEventListener('click', function() {
+        rentBtn.addEventListener('click', function () {
             const toolName = document.getElementById('modal-title').textContent;
-            const whatsappUrl = `https://wa.me/5216311681816?text=Hola%20José,%20quiero%20rentar:%20${encodeURIComponent(toolName)}.%20¿Disponible?`;
+            const whatsappUrl = `https://wa.me/5216311681816?text=Hola%20Renta%20y%20Reparaciones%20de%20la%20Bahía,%20quiero%20rentar:%20${encodeURIComponent(toolName)}.%20¿Disponible?`;
             window.open(whatsappUrl, '_blank');
-            closeModal();
         });
-        
-        // Cerrar con ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+
+        // Cerrar con ESC y navegar con flechas
+        document.addEventListener('keydown', function (e) {
+            if (!imageModal.classList.contains('active')) return;
+
+            if (e.key === 'Escape') {
                 closeModal();
+            } else if (e.key === 'ArrowLeft') {
+                navigateModal(-1);
+            } else if (e.key === 'ArrowRight') {
+                navigateModal(1);
             }
         });
+    }
+
+    // Navegar en el modal
+    function navigateModal(direction) {
+        if (herramientas.length === 0) return;
+
+        currentToolIndex += direction;
+
+        // Wraparound
+        if (currentToolIndex < 0) {
+            currentToolIndex = herramientas.length - 1;
+        } else if (currentToolIndex >= herramientas.length) {
+            currentToolIndex = 0;
+        }
+
+        const toolData = herramientas[currentToolIndex];
+        updateModalContent(toolData);
+    }
+
+    // Actualizar contenido del modal
+    function updateModalContent(toolData) {
+        const modalImg = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalPriceDay = document.getElementById('modal-price-day');
+
+        const imagePath = toolData.image ? `images/${toolData.image}` : 'images/logo.png';
+
+        // Efecto de transición suave
+        modalImg.style.opacity = '0';
+
+        setTimeout(() => {
+            modalImg.src = imagePath;
+            modalImg.alt = toolData.nombre;
+            modalTitle.textContent = toolData.nombre;
+            modalPriceDay.textContent = `${formatter.format(toolData.precio_diario)} / día`;
+            modalImg.style.opacity = '1';
+        }, 150);
     }
 
     // Mostrar modal
@@ -155,20 +215,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const modalTitle = document.getElementById('modal-title');
         const modalPriceDay = document.getElementById('modal-price-day');
         //const modalPriceWeek = document.getElementById('modal-price-week');
-        
+
         const imagePath = toolData.image ? `images/${toolData.image}` : 'images/default-tool.jpg';
-        
+
         modalImg.src = imagePath;
         modalImg.alt = toolData.nombre;
         modalTitle.textContent = toolData.nombre;
         modalPriceDay.textContent = `${formatter.format(toolData.precio_diario)} por día`;
         //modalPriceWeek.textContent = `Semana: ${formatter.format(calculations.weekly)} (${calculations.percentage}% descuento)`;
-        
+
         imageModal.classList.add('active');
         document.body.style.overflow = 'hidden';
-        
+
         // Asegurar que la imagen se cargue correctamente
-        modalImg.onload = function() {
+        modalImg.onload = function () {
             // Forzar reflow para asegurar scroll
             modalImg.parentElement.scrollTop = 0;
         };
@@ -184,18 +244,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderPricingTable() {
         // Ordenar por precio
         herramientas.sort((a, b) => a.precio_diario - b.precio_diario);
-        
+
         let html = '';
-        
+
         herramientas.forEach((herramienta, index) => {
             const calculations = calculateWeeklyPrice(
-                herramienta.precio_diario, 
+                herramienta.precio_diario,
                 herramienta.porcentaje_descuento_semanal
             );
-            
+
             const categoryClass = getCategoryClass(herramienta.categoria);
             const categoryText = getCategoryText(herramienta.categoria);
-            
+
             html += `
                 <div class="table-row dynamic-row clickable-row" 
                      style="animation-delay: ${index * 0.1}s"
@@ -236,28 +296,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         container.innerHTML = html;
-        
+
         // Event listeners para filas clickables
         setTimeout(() => {
             document.querySelectorAll('.clickable-row').forEach(row => {
-                row.addEventListener('click', function(e) {
+                row.addEventListener('click', function (e) {
                     if (e.target.closest('a')) return;
-                    
+
                     const index = parseInt(this.getAttribute('data-index'));
+                    currentToolIndex = index;
                     const toolData = herramientas[index];
-                    const calculations = calculateWeeklyPrice(
-                        toolData.precio_diario, 
-                        toolData.porcentaje_descuento_semanal
-                    );
-                    showModal(toolData, calculations);
+                    showModal(toolData);
                 });
-                
-                row.addEventListener('keydown', function(e) {
+
+                row.addEventListener('keydown', function (e) {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
                         const index = parseInt(this.getAttribute('data-index'));
+                        currentToolIndex = index;
                         const toolData = herramientas[index];
-                        showModal(toolData, calculateWeeklyPrice(toolData.precio_diario, toolData.porcentaje_descuento_semanal));
+                        showModal(toolData);
                     }
                 });
             });
@@ -268,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateSummary() {
         const totalTools = herramientas.length;
         if (totalToolsElement) totalToolsElement.textContent = totalTools;
-        
+
         if (summaryContainer) {
             // Limpiar estadísticas previas si existen (excepto el primer item que es estático en HTML pero aquí se suma)
             // En el nuevo diseño el sumario es más simple
@@ -276,27 +334,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Update modal render for the new styles
-    function showModal(toolData, calculations) {
-        const modalImg = document.getElementById('modal-image');
-        const modalTitle = document.getElementById('modal-title');
-        const modalPriceDay = document.getElementById('modal-price-day');
-        
-        const imagePath = toolData.image ? `images/${toolData.image}` : 'images/jose-maquina.jpg';
-        
-        modalImg.src = imagePath;
-        modalImg.alt = toolData.nombre;
-        modalTitle.textContent = toolData.nombre;
-        modalPriceDay.textContent = `${formatter.format(toolData.precio_diario)} / día`;
-        
+    function showModal(toolData) {
+        updateModalContent(toolData);
         imageModal.classList.add('active');
         document.body.style.overflow = 'hidden';
-        
-        // Update WhatsApp button in modal
-        const rentBtn = imageModal.querySelector('.modal-rent-btn');
-        rentBtn.onclick = function() {
-            const whatsappUrl = `https://wa.me/5216311681816?text=Hola%20Renta%20y%20Reparaciones%20de%20la%20Bahía,%20me%20interesa%20rentar:%20${encodeURIComponent(toolData.nombre)}`;
-            window.open(whatsappUrl, '_blank');
-        };
     }
 
     // Inicializar
