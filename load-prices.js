@@ -180,28 +180,13 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = 'auto';
     }
 
-    // Renderizar tabla con filas clickables
-    // Renderizar tabla con filas clickables
+    // Renderizar catálogo con diseño de tarjetas premium
     function renderPricingTable() {
         // Ordenar por precio
         herramientas.sort((a, b) => a.precio_diario - b.precio_diario);
         
-        // Detect if we're on a small viewport (mobile)
-        const isSmallViewport = window.innerWidth <= 768; // Adjust breakpoint as needed
-        
         let html = '';
         
-        // Only add header row if NOT small viewport
-        if (!isSmallViewport) {
-            html += `
-                <div class="table-header">
-                    <div class="header-item">Equipo</div>
-                    <div class="header-item">Precio por Día</div>
-                    <div class="header-item">Precio por Semana</div>
-                    <div class="header-item">¡AHORRA!</div>
-                </div>`;
-        }
-
         herramientas.forEach((herramienta, index) => {
             const calculations = calculateWeeklyPrice(
                 herramienta.precio_diario, 
@@ -211,7 +196,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const categoryClass = getCategoryClass(herramienta.categoria);
             const categoryText = getCategoryText(herramienta.categoria);
             
-            // For small viewports, remove data-labels and simplify structure
             html += `
                 <div class="table-row dynamic-row clickable-row" 
                      style="animation-delay: ${index * 0.1}s"
@@ -219,37 +203,33 @@ document.addEventListener('DOMContentLoaded', function() {
                      role="button"
                      tabindex="0"
                      aria-label="Ver detalles de ${herramienta.nombre}">
-                    <div class="table-cell" ${isSmallViewport ? '' : 'data-label="Equipo"'}>
-                        <div class="equipo-info">
-                            <div class="equipo-icon">
-                                <i class="${herramienta.icono || 'fas fa-tools'}"></i>
+                    
+                    <div class="equipo-info">
+                        <div class="equipo-icon">
+                            <i class="${herramienta.icono || 'fas fa-tools'}"></i>
+                        </div>
+                        <div class="equipo-details">
+                            <div class="equipo-name">${herramienta.nombre}</div>
+                            <div class="category-badge ${categoryClass}">
+                                ${categoryText}
                             </div>
-                            <div class="equipo-details">
-                                <div class="equipo-name">${herramienta.nombre}</div>
-                                <div class="category-badge ${categoryClass}">
-                                    <span class="badge-text">${categoryText}</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    <div class="table-cell" ${isSmallViewport ? '' : 'data-label="Precio por Día"'}>
-                        <div class="price">
-                            ${formatter.format(herramienta.precio_diario)} 
-                            <span class="price-period">/día</span>
+
+                    <div class="price-container">
+                        <div class="price-col">
+                            <span class="price-label">Renta por día</span>
+                            <div class="price">${formatter.format(herramienta.precio_diario)}</div>
                         </div>
-                    </div>
-                    <div class="table-cell" ${isSmallViewport ? '' : 'data-label="Precio por Semana"'}>
-                        <div class="price">
-                            ${formatter.format(calculations.weekly)} 
-                            <span class="price-period">/semana</span>
+                        
+                        <div class="price-col">
+                            <span class="price-label">Renta por semana</span>
+                            <div class="price">${formatter.format(calculations.weekly)}</div>
                         </div>
-                    </div>
-                    <div class="table-cell" ${isSmallViewport ? '' : 'data-label="¡Ahorras!"'}>
-                        <div class="save-amount">
-                            ¡Ahorras ${formatter.format(calculations.discount)}!
-                        </div>
-                        <div class="save-percent">
-                            (${calculations.percentage}% de descuento)
+
+                        <div class="save-badge">
+                            <span class="save-amount">¡Ahorras ${formatter.format(calculations.discount)}!</span>
+                            <span class="save-percent">${calculations.percentage}% OFF</span>
                         </div>
                     </div>
                 </div>`;
@@ -260,9 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Event listeners para filas clickables
         setTimeout(() => {
             document.querySelectorAll('.clickable-row').forEach(row => {
-                // Click
                 row.addEventListener('click', function(e) {
-                    // Evitar si se hizo clic en un enlace dentro de la fila
                     if (e.target.closest('a')) return;
                     
                     const index = parseInt(this.getAttribute('data-index'));
@@ -274,23 +252,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     showModal(toolData, calculations);
                 });
                 
-                // Keyboard support (Enter/Space)
                 row.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
                         const index = parseInt(this.getAttribute('data-index'));
                         const toolData = herramientas[index];
-                        const calculations = calculateWeeklyPrice(
-                            toolData.precio_diario, 
-                            toolData.porcentaje_descuento_semanal
-                        );
-                        showModal(toolData, calculations);
+                        showModal(toolData, calculateWeeklyPrice(toolData.precio_diario, toolData.porcentaje_descuento_semanal));
                     }
-                });
-                
-                // Hover effects
-                row.addEventListener('mouseenter', function() {
-                    this.style.cursor = 'pointer';
                 });
             });
         }, 100);
@@ -299,30 +267,36 @@ document.addEventListener('DOMContentLoaded', function() {
     // Actualizar resumen
     function updateSummary() {
         const totalTools = herramientas.length;
-        const avgDailyPrice = Math.round(
-            herramientas.reduce((sum, h) => sum + h.precio_diario, 0) / totalTools
-        );
-        const avgDiscount = Math.round(
-            herramientas.reduce((sum, h) => sum + h.porcentaje_descuento_semanal * 100, 0) / totalTools
-        );
-        
-        if (totalToolsElement) {
-            totalToolsElement.textContent = totalTools;
-        }
+        if (totalToolsElement) totalToolsElement.textContent = totalTools;
         
         if (summaryContainer) {
-            const statsHtml = `
-                <div class="summary-item">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Precio promedio: <strong>${formatter.format(avgDailyPrice)}</strong> /día</span>
-                </div>
-                <div class="summary-item">
-                    <i class="fas fa-tags"></i>
-                    <span>Descuento promedio: <strong>${avgDiscount}%</strong> /semana</span>
-                </div>`;
-            
-            summaryContainer.insertAdjacentHTML('beforeend', statsHtml);
+            // Limpiar estadísticas previas si existen (excepto el primer item que es estático en HTML pero aquí se suma)
+            // En el nuevo diseño el sumario es más simple
         }
+    }
+
+    // Update modal render for the new styles
+    function showModal(toolData, calculations) {
+        const modalImg = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalPriceDay = document.getElementById('modal-price-day');
+        
+        const imagePath = toolData.image ? `images/${toolData.image}` : 'images/jose-maquina.jpg';
+        
+        modalImg.src = imagePath;
+        modalImg.alt = toolData.nombre;
+        modalTitle.textContent = toolData.nombre;
+        modalPriceDay.textContent = `${formatter.format(toolData.precio_diario)} / día`;
+        
+        imageModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Update WhatsApp button in modal
+        const rentBtn = imageModal.querySelector('.modal-rent-btn');
+        rentBtn.onclick = function() {
+            const whatsappUrl = `https://wa.me/5216311681816?text=Hola%20Renta%20y%20Reparaciones%20de%20la%20Bahía,%20me%20interesa%20rentar:%20${encodeURIComponent(toolData.nombre)}`;
+            window.open(whatsappUrl, '_blank');
+        };
     }
 
     // Inicializar
