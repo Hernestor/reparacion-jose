@@ -34,7 +34,7 @@
     },
     {
       "nombre": "Generador Hyundai 3000W",
-      "precio_diario": 400,
+      "precio_diario": 580,
       "porcentaje_descuento_semanal": 0.15,
       "image":"planta-de-luz.jpg",
       "icono": "fa-solid fa-bolt",
