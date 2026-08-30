@@ -28,7 +28,7 @@
       "nombre": "Compresor 25 litros",
       "precio_diario": 400,
       "porcentaje_descuento_semanal": 0.15,
-      "image":"compresor.jpg",
+      "image": "compresor.jpg",
       "icono": "fas fa-compress-arrows-alt",
       "categoria": "equipo"
     },
@@ -36,7 +36,7 @@
       "nombre": "Generador Hyundai 3000W",
       "precio_diario": 580,
       "porcentaje_descuento_semanal": 0.15,
-      "image":"planta-de-luz.jpg",
+      "image": "planta-de-luz.jpg",
       "icono": "fa-solid fa-bolt",
       "categoria": "equipo"
     },
@@ -44,7 +44,7 @@
       "nombre": "Generador de 9000w trifásico",
       "precio_diario": 600,
       "porcentaje_descuento_semanal": 0.15,
-      "image":"planta-de-luz.jpg",
+      "image": "planta-de-luz.jpg",
       "icono": "fa-solid fa-bolt",
       "categoria": "equipo"
     },
@@ -57,7 +57,7 @@
       "categoria": "herramientas"
     },
     {
-      "nombre": "Motorsiera de 14 pulgadas",
+      "nombre": "Motorsierra de 14 pulgadas",
       "precio_diario": 750,
       "porcentaje_descuento_semanal": 0.15,
       "image": "motosierra-14-pulgadas.jpg",
@@ -65,7 +65,7 @@
       "categoria": "jardineria"
     },
     {
-      "nombre": "Motorsiera de 18 pulgadas",
+      "nombre": "Motorsierra de 18 pulgadas",
       "precio_diario": 750,
       "porcentaje_descuento_semanal": 0.15,
       "image": "motosierra-18-pulgadas.jpg",
@@ -76,7 +76,7 @@
       "nombre": "Karcher (Hidrolavadora 1450 psi)",
       "precio_diario": 320,
       "porcentaje_descuento_semanal": 0.15,
-      "image":"hidrolavadora-karcher.jpg",
+      "image": "hidrolavadora-karcher.jpg",
       "icono": "fas fa-spray-can",
       "categoria": "limpieza"
     }
