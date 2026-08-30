@@ -1204,38 +1204,40 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .modal-image-container {
-        padding: 30px 15px;
+    /* Corrección de Grids */
+    .services-grid, 
+    .gallery-grid, 
+    .testimonials-grid,
+    .process-steps,
+    .guarantees-grid {
+        grid-template-columns: 1fr;
     }
 
-    .modal-nav {
-        width: 40px;
-        height: 40px;
+    /* Reducción de Espacios (Paddings) */
+    .problem-solution, .process-section, .repair-section, 
+    .gallery-section, .rent-section, .testimonials-section, 
+    .guarantees-section, .faq-section {
+        padding: 40px 0;
+    }
+    
+    header {
+        padding: 100px 0 40px;
     }
 
-    .modal-footer {
-        padding: 20px;
+    /* Optimización de Touch Targets */
+    .nav-whatsapp-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
     }
 
-    .modal-info {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .modal-rent-btn {
-        width: 100%;
-    }
-}
-
-/* 19. MOBILE ADJUSTMENTS */
-@media (max-width: 768px) {
+    /* Ajuste Tipografía y Hero */
     .hero-profile {
         order: -1;
     }
 
     .profile-img {
-        width: 200px;
-        height: 250px;
+        width: 150px;
+        height: 200px;
     }
 
     .contact-info {
@@ -1256,12 +1258,61 @@ footer {
         margin: -30px auto;
     }
 
+    /* Mejora de Catálogo (Precios) */
     .table-row {
+        text-align: center;
+    }
+
+    .equipo-info {
+        flex-direction: column;
         text-align: center;
     }
 
     .price-container {
         flex-direction: column;
         gap: 15px;
+    }
+
+    .save-badge {
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    /* Ajustes Modal Imágenes en Móvil */
+    .modal-image-container {
+        padding: 30px 15px 80px 15px; /* Espacio extra inferior para los botones */
+    }
+
+    .modal-nav {
+        width: 44px; /* Tamaño táctil mínimo recomendado */
+        height: 44px;
+        top: auto;
+        bottom: 20px;
+        transform: none;
+    }
+    
+    .modal-nav:hover {
+        transform: scale(1.1);
+    }
+
+    .modal-nav.prev {
+        left: 30px;
+    }
+
+    .modal-nav.next {
+        right: 30px;
+    }
+
+    .modal-footer {
+        padding: 20px;
+    }
+
+    .modal-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .modal-rent-btn {
+        width: 100%;
     }
 }
